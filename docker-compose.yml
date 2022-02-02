@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    command: ["postgres", "-c", "log_statement=all"]
+    ports:
+      - "5433:5433"
+    volumes:
+      - postgres_mart:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=rindus
+      - POSTGRES_PASSWORD=rindus
+      - POSTGRES_DB=rindus
+  rindus:
+    build: .
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+    volumes:
+      - ./rindus_test:/rindus_test
+    stdin_open: true
+    tty: true
+
+volumes:
+  node-modules:
+  postgres_mart:
