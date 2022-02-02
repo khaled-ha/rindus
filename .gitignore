@@ -110,3 +110,6 @@ venv/
 /back/venv
 back/
 *.org
+
+
+*.tpl
